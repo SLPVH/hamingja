@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-text color="danger">*</ion-text>
+      <ion-input placeholder="Name of card" required [(ngModel)]="cardName"></ion-input>
+    </ion-item>
+    <ion-item>
+      TODO: select image
+    </ion-item>
+    <ion-item>
+      <ion-label>Buy</ion-label>
+      <ion-select value="5">
+        <ion-select-option value="5">5</ion-select-option>
+        <ion-select-option value="10">10</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Get</ion-label>
+      <ion-select value="1 free">
+        <ion-select-option value="1 free">1 free</ion-select-option>
+        <ion-select-option value="10% off">10% off</ion-select-option>
+        <ion-select-option value="20% off">20% off</ion-select-option>
+        <ion-select-option value="30% off">30% off</ion-select-option>
+        <ion-select-option value="40% off">40% off</ion-select-option>
+        <ion-select-option value="50% off">50% off</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Termination</ion-label>
+      <ion-toggle [(ngModel)]="enableTermination"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="enableTermination">
+      <ion-label>Termination Date</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" max="2099-12-31"></ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="enableTermination">
+      <ion-label>Termination Time</ion-label>
+      <ion-datetime displayFormat="HH:mm:ss"></ion-datetime>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" [disabled]="cardName === ''">Create Loyalty Card</ion-button>
+</ion-content>

@@ -1,0 +1,16 @@
+<ion-content>
+  <ion-card button routerLink="/create-stamp">
+    <ion-card-content>+</ion-card-content>
+  </ion-card>
+
+  <ion-list *ngFor="let stamp of stamps">
+    <ion-card button [routerLink]="['/stamp-details', stamp]">
+      <ion-card-content>
+        <ion-label>{{stamp.name}}</ion-label>
+        <div>
+          <ion-icon name="star" *ngFor="let _ of [].constructor(stamp.max)"></ion-icon>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

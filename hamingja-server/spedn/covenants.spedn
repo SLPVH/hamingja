@@ -1,0 +1,5 @@
+contract Covenants(Ripemd160 pkh) {
+    challange spend(PubKey pk, Sig sig, bit preimage) {
+
+    }
+}

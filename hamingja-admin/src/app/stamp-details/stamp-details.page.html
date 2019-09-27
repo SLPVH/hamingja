@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{stamp.name}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="star"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        You have {{amount}} points
+      </ion-label>
+      <ion-button>Add more stamps</ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" (click)="onGiftPointClicked()">Gift 1 point</ion-button>
+</ion-content>

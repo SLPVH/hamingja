@@ -1,0 +1,16 @@
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-input placeholder="Withdraw Address" required [(ngModel)]="address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <section>
+        <header>Scan QR code</header>
+        <ion-button expand="full" (click)="onCameraClicked()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-button>
+      </section>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" (click)="onWithdrawClicked()">Withdraw</ion-button>
+</ion-content>
