@@ -16,9 +16,9 @@
     </ion-item>
     <ion-item>
       <ion-label>
-        You have {{amount}} points
+        You have {{stamp.balance}} points
       </ion-label>
-      <ion-button>Add more stamps</ion-button>
+      <ion-button [routerLink]="['/add-stamps', stamp]">Add more stamps</ion-button>
     </ion-item>
   </ion-list>
   <ion-button expand="full" (click)="onGiftPointClicked()">Gift 1 point</ion-button>

@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label>Stamps</ion-label>
+  <ion-input [(ngModel)]="amount" type="number"></ion-input>
+  <ion-button (click)="onAddStampsClicked()" expand="full">Add stamps</ion-button>
+</ion-content>
