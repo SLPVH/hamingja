@@ -75,3 +75,13 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+@media screen and (min-width: 375px) {
+    body {
+      width: 375px !important;
+      margin: auto !important;
+      left: 0;
+      right: 0;
+      background-color: #6c6c6c !important;
+    }
+}
