@@ -1,5 +1,34 @@
-contract Covenants(Ripemd160 pkh) {
-    challange spend(PubKey pk, Sig sig, bit preimage) {
+contract Covenants(Ripemd160 ownerPkh, Ripemd160 customerPkh, bin maxValue, bin tokenId) {
+    challenge spend(PubKey pk, Sig sig, bin preimage, bin changeOutput) {
+        verify hash160(pk) == customerPkh;
 
+        verify checkSig(sig, pk);
+        verify checkDataSig(toDataSig(sig), Sha256(preimage), pk);
+
+        bin [ver, _] = preimage @ 4;
+        bin [_, tail] = preimage @ (size(preimage) - 40);
+        bin [hashOutput, _] = tail @ 32;
+
+        bin opReturn = 0x6a;
+        bin lokadId = 0x04534c5000;
+        bin tokenType = 0x0101;
+        bin txType = 0x0453454e44;
+        bin pushId = 0x20;
+        bin pushMax = 0x08;
+        bin pushOpReturn = 0x37;
+
+        bin out0 = num2bin(0, 8) . pushOpReturn . opReturn . lokadId . tokenType . txType . pushId . tokenId . pushMax . maxValue;
+
+        bin opDup = 0x76;
+        bin opHash160 = 0xa9;
+        bin opEqual = 0x87;
+        bin pushHash = 0x14;
+        bin opEqualverify = 0x88;
+        bin opChecksig = 0xac;
+        bin pushP2pkh = 0x19;
+
+        bin out1 = num2bin(546, 8) . pushP2pkh . opDup . opHash160 . pushHash . ownerPkh . opEqualverify . opChecksig;
+
+        verify hash256(out0 . out1 . changeOutput) == Sha256(hashOutput);
     }
 }
