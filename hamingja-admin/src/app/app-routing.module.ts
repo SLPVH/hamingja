@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'scan-qr', loadChildren: './modal/scan-qr/scan-qr.module#ScanQRPageModule' },
   { path: 'deposit', loadChildren: './deposit/deposit.module#DepositPageModule' },
   { path: 'withdraw', loadChildren: './withdraw/withdraw.module#WithdrawPageModule' },
+  { path: 'result', loadChildren: './result/result.module#ResultPageModule' },
   // { path: 'stamps', loadChildren: './stamps/stamps.module#StampsPageModule' },
   // { path: 'tickets', loadChildren: './tickets/tickets.module#TicketsPageModule' },
 ];

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { BITBOX } from 'bitbox-sdk/lib/BITBOX';
-import { Utils } from 'slpjs';
+import { Utils, BitboxNetwork } from 'slpjs';
 import { HDNode } from 'bitcoincashjs-lib';
+import BigNumber from 'bignumber.js';
 
 const network: string = 'testnet';
 const restURL = (network === 'mainnet') ? 'https://rest.bitcoin.com/v2/' : 'https://trest.bitcoin.com/v2/'
@@ -90,5 +91,47 @@ export class WalletService {
     }
 
     return details.unconfirmedBalanceSat + details.balanceSat;
+  }
+
+  async createNewToken(name: string, ticker: string, document: string | Object): Promise<string | undefined> {
+    const fundingAddress = this.slpAddress();
+    const fundinfWif = this.bitbox.HDNode.toWIF(this.slpNode());
+    const tokenReceiverAddress = this.slpAddress();
+    const bchChangeReceiverAddress = this.slpAddress();
+    const batonReceiverAddress = this.slpAddress();
+
+    const bitboxNetwork = new BitboxNetwork(this.bitbox);
+    const balances = await bitboxNetwork.getAllSlpBalancesAndUtxos(fundingAddress);
+    if (Array.isArray(balances)) {
+      return;
+    }
+
+    const decimals = 0;
+    const initialTokenQty = new BigNumber(10000000);
+
+    let documentHash = null;
+    let documentUri: string;
+    if (typeof document === 'string') {
+      documentUri = document;
+    } else {
+      documentUri = JSON.stringify(document);
+    }
+
+    balances.nonSlpUtxos.forEach(utxo => utxo.wif = fundinfWif);
+
+    const txid = await bitboxNetwork.simpleTokenGenesis(
+      name,
+      ticker,
+      initialTokenQty,
+      documentUri,
+      documentHash,
+      decimals,
+      tokenReceiverAddress,
+      batonReceiverAddress,
+      bchChangeReceiverAddress,
+      balances.nonSlpUtxos
+    );
+
+    return txid;
   }
 }

@@ -17,14 +17,14 @@
     </ion-item>
     <ion-item>
       <ion-label>Buy</ion-label>
-      <ion-select value="5">
+      <ion-select value="5" [(ngModel)]="max">
         <ion-select-option value="5">5</ion-select-option>
         <ion-select-option value="10">10</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Get</ion-label>
-      <ion-select value="1 free">
+      <ion-select value="1 free" [(ngModel)]="coupon">
         <ion-select-option value="1 free">1 free</ion-select-option>
         <ion-select-option value="10% off">10% off</ion-select-option>
         <ion-select-option value="20% off">20% off</ion-select-option>
@@ -46,5 +46,5 @@
       <ion-datetime displayFormat="HH:mm:ss"></ion-datetime>
     </ion-item>
   </ion-list>
-  <ion-button expand="full" [disabled]="cardName === ''">Create Loyalty Card</ion-button>
+  <ion-button expand="full" [disabled]="cardName === ''" (click)="onCreateClicked()">Create Loyalty Card</ion-button>
 </ion-content>
