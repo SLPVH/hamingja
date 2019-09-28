@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="onCloseClicked()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="onReverseCameraClicked()">
+    <ion-icon name="reverse-camera"></ion-icon>
+  </ion-button>
+  <zxing-scanner
+    (camerasFound)="onCamerasFound($event)"
+    (scanSuccess)="onScanSuccess($event)"
+  ></zxing-scanner>
+</ion-content>

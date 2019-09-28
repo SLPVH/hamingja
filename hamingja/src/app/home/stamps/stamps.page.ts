@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { QRCodePage } from 'src/app/modal/qrcode/qrcode.page';
+import { Stamp } from './stamp';
 
 @Component({
   selector: 'app-stamps',
@@ -8,6 +9,10 @@ import { QRCodePage } from 'src/app/modal/qrcode/qrcode.page';
   styleUrls: ['./stamps.page.scss'],
 })
 export class StampsPage implements OnInit {
+  stamps: Stamp[] = [
+    {name: 'dummy1', max: 5, amount: 1},
+    {name: 'dummy2', max: 5, amount: 5},
+  ];
 
   constructor(private modalController: ModalController) { }
 

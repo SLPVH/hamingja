@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { QRCodePageModule } from './modal/qrcode/qrcode.module';
+import { ScanQRPageModule } from './modal/scan-qr/scan-qr.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { QRCodePageModule } from './modal/qrcode/qrcode.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     QRCodePageModule,
+    ScanQRPageModule,
   ],
   providers: [
     StatusBar,
