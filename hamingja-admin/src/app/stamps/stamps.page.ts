@@ -7,7 +7,7 @@ import { Stamp } from './stamp';
   styleUrls: ['./stamps.page.scss'],
 })
 export class StampsPage implements OnInit {
-  public stamps: Stamp[] = [{name: 'dummy', max: 5}];
+  public stamps: Stamp[] = [{name: 'dummy', max: 7}];
 
   constructor() { }
 

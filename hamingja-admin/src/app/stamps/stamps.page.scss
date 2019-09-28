@@ -1,0 +1,84 @@
+.add-items-button{
+	text-align: center;
+	position: fixed;
+	width: 95%;
+	height: 40px;
+	color: white;
+	background-color: var(--my-color-gray);
+	bottom: 14px;
+	z-index: 1;
+	margin: auto;
+	left: 0;
+	right: 0;
+}
+.stamp-card-style{
+	width: auto;
+	height: auto;
+	ion-card-content{
+	height: 60px;
+	padding: 0 12px;
+	}	
+}
+
+//to do 
+.card-id-1{
+	background-color: #f5fff4;
+	ion-icon{
+		color:#e0b500;
+	}
+}
+.card-id-2{
+	background-color: #faebd7;
+	ion-icon{
+		color:#7d4a63;
+	}	
+}
+.card-id-3{
+	background-color: #282828;
+	ion-icon{
+		color:#ffffff;
+	}	
+}
+
+.card-id-4{
+	background-color: #65fff9;
+	ion-icon{
+		color:#d65972;
+	}	
+}
+
+.card-id-5{
+	background-color: #38383a;
+	ion-icon{
+		color:#e6e6e6;
+	}	
+}
+
+ion-card-title{
+	position: absolute;
+	z-index: 1;
+	left: 1rem;
+	top: 1rem;
+	display: none;
+}
+ion-icon{
+	height: 2.2rem;
+	width: 2.2rem;
+	color: var(--ion-color-secondary);
+}
+ion-list{
+	//padding-bottom: 60px;
+}
+.icons_wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 10px;
+}
+.footer-button{
+	height: 56px;
+	margin: 0;
+	color: white;
+}
+
+  
+

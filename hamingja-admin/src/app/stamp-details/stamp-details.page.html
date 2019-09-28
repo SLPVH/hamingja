@@ -5,21 +5,30 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-list>
+
+    <ion-card class="stamp-card-style card-id-2" button [routerLink]="['/stamp-details', stamp]">
+      <ion-img src="assets/cards/pow-yoga.png"></ion-img>
+      <ion-card-content>
+        <div class="icons_wrapper">
+          <ion-icon name="heart" *ngFor="let _ of [].constructor(stamp.max)"></ion-icon>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
     <ion-item>
       <ion-label>{{stamp.name}}</ion-label>
     </ion-item>
-    <ion-item>
+<!--     <ion-item>
       <ion-icon name="star"></ion-icon>
-    </ion-item>
+    </ion-item> -->
     <ion-item>
       <ion-label>
-        You have {{amount}} points
+        You have {{amount}} stamps
       </ion-label>
       <ion-button>Add more stamps</ion-button>
     </ion-item>
   </ion-list>
-  <ion-button expand="full" (click)="onGiftPointClicked()">Gift 1 point</ion-button>
+  <ion-button expand="full" (click)="onGiftPointClicked()">Send 1 stamp</ion-button>
 </ion-content>
