@@ -2,7 +2,7 @@ import { JsonController, Get, QueryParam } from "routing-controllers";
 import { Spedn } from 'spedn';
 import path from 'path';
 
-const network = 'testnet';
+const network = 'mainnet';
 
 @JsonController('/address')
 export class AddressController {
@@ -21,7 +21,7 @@ export class AddressController {
     console.log(ownerPkh, customerPkh, maxValue, tokenId);
 
     const max = Buffer.alloc(8);
-    max.writeBigInt64LE(BigInt(maxValue));
+    max.writeBigInt64BE(BigInt(maxValue));
 
     const instance = new Covenant({
       ownerPkh: Buffer.from(ownerPkh, 'hex'),

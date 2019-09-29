@@ -3,7 +3,7 @@ contract Covenants(Ripemd160 ownerPkh, Ripemd160 customerPkh, bin maxValue, bin 
         verify hash160(pk) == customerPkh;
 
         verify checkSig(sig, pk);
-        verify checkDataSig(toDataSig(sig), Sha256(preimage), pk);
+        verify checkDataSig(toDataSig(sig), sha256(preimage), pk);
 
         bin [ver, _] = preimage @ 4;
         bin [_, tail] = preimage @ (size(preimage) - 40);
