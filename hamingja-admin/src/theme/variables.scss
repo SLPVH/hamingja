@@ -4,7 +4,7 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #521e4a;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -12,7 +12,7 @@
   --ion-color-primary-tint: #4c8dff;
 
   /** secondary **/
-  --ion-color-secondary: #0cd1e8;
+  --ion-color-secondary: #b090cb;
   --ion-color-secondary-rgb: 12, 209, 232;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
@@ -75,3 +75,55 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+@media screen and (min-width: 375px) {
+    body {
+      width: 375px !important;
+      margin: auto !important;
+      left: 0;
+      right: 0;
+      background-color: #6c6c6c !important;
+    }
+}
+
+ion-menu {
+  --ion-background-color: var(--ion-color-primary);
+  --ion-text-color: var(--ion-color-primary-contrast);
+
+  ion-toolbar {
+    --background: var(--ion-color-primary);
+  }
+
+  ion-list {/* optional, but it needs when you use gradient as a background color.*/
+    background: transparent;
+  }
+}
+ion-split-pane{
+  ion-menu{
+    ion-header{
+      ion-title{
+          background-image:url('../assets/img/hamingja-logo-white.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          text-indent: -99999rem;
+          height: 40px;
+          background-size: contain;
+      }
+    }
+
+  }
+}
+app-home{
+  ion-header{
+    ion-title{
+      background-image:url('../assets/img/hamingja-logo.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      text-indent: -99999rem;
+      height: 40px;
+      background-size: contain;      
+    }
+  }
+}
+
+
