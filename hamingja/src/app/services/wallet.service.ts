@@ -101,6 +101,9 @@ export class WalletService {
     const stampsAll = opReturns.map(opReturn => {
       try {
         const ops = opReturn.split(' ');
+        if (ops.length > 2) {
+          return undefined;
+        }
         const target = Buffer.from(ops[1], 'hex').toString('utf-8');
         const obj = JSON.parse(target);
 

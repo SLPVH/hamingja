@@ -278,9 +278,7 @@ export class WalletService {
     txb.addOutput(customerAddress, balance - fee);
 
     const key = this.bitbox.HDNode.toKeyPair(this.slpNode());
-    // utxos.forEach((utxo, i) => {
-      txb.sign(0, key, undefined, txb.hashTypes.SIGHASH_ALL, utxo.satoshis);
-    // });
+    txb.sign(0, key, undefined, txb.hashTypes.SIGHASH_ALL, utxo.satoshis);
 
     const hex = txb.build().toHex();
 

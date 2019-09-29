@@ -50,18 +50,22 @@ export class StampDetailsPage implements OnInit {
   }
 
   async onUseThisClicked() {
-    // const modal = await this.modalController.create({
-    //   component: ScanQRPage,
-    // });
+    const modal = await this.modalController.create({
+      component: ScanQRPage,
+    });
 
-    // await modal.present();
+    await modal.present();
 
-    // const {data}: OverlayEventDetail<ScanResult> = await modal.onWillDismiss();
-    // if (!data || !data.text) {
+    const {data}: OverlayEventDetail<ScanResult> = await modal.onWillDismiss();
+    if (!data || !data.text) {
+      return;
+    }
+
+    console.log(data.text);
+
+    // if (data.text !== this.stamp.ownerAddress) {
     //   return;
     // }
-
-    // console.log(data.text);
 
     this.wallet.useStamp(this.stamp);
   }

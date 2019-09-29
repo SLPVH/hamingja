@@ -37,21 +37,21 @@ export class StampDetailsPage implements OnInit {
   }
 
   async onGiftPointClicked() {
-    // const modal = await this.modalController.create({
-    //   component: ScanQRPage,
-    // });
+    const modal = await this.modalController.create({
+      component: ScanQRPage,
+    });
 
-    // await modal.present();
+    await modal.present();
 
-    // const {data}: OverlayEventDetail<ScanResult> = await modal.onWillDismiss();
-    // if (!data || !data.text) {
-    //   return;
-    // }
+    const {data}: OverlayEventDetail<ScanResult> = await modal.onWillDismiss();
+    if (!data || !data.text) {
+      return;
+    }
 
-    // console.log(data.text);
+    console.log(data.text);
 
-    // const customerAddress = data.text;
-    const customerAddress = 'bitcoincash:qz9plpytat9flm938f8q59hgv80jxdax6s5ytm2jkx';
+    const customerAddress = data.text;
+    // const customerAddress = 'bitcoincash:qrj0ctcmu3a2cstkcuqlvlwv695a226plu38htsd9r';
 
     const destAddress = await this.spedn.getAddress(this.wallet.cashAddress(), customerAddress, this.stamp.max, this.stamp.tokenId);
     console.log(destAddress);

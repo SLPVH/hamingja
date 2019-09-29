@@ -12,8 +12,6 @@ const routes: Routes = [
   { path: 'withdraw', loadChildren: './withdraw/withdraw.module#WithdrawPageModule' },
   { path: 'result', loadChildren: './result/result.module#ResultPageModule' },
   { path: 'add-stamps', loadChildren: './add-stamps/add-stamps.module#AddStampsPageModule' },
-  // { path: 'stamps', loadChildren: './stamps/stamps.module#StampsPageModule' },
-  // { path: 'tickets', loadChildren: './tickets/tickets.module#TicketsPageModule' },
 ];
 
 @NgModule({
