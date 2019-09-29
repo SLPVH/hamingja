@@ -20,15 +20,23 @@
     <ion-item>
       <ion-label>{{stamp.name}}</ion-label>
     </ion-item>
-<!--     <ion-item>
-      <ion-icon name="star"></ion-icon>
-    </ion-item> -->
     <ion-item>
-      <ion-label>
-        You have {{stamp.balance}} stamps
-      </ion-label>
-      <ion-button [routerLink]="['/add-stamps', stamp]">Add more stamps</ion-button>
+      <ion-label>Remaining Stamps</ion-label>
+      <ion-badge color="secondary">{{stamp.balance}}</ion-badge> <!-- If possible, change color to warning when the amount is near empty-->
     </ion-item>
-  </ion-list>
-  <ion-button expand="full" (click)="onGiftPointClicked()">Send 1 stamp</ion-button>
+   <ion-item >
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2></ion-col>
+        <ion-col col-4><ion-button color="secondary">Add more Stamps</ion-button></ion-col>
+        <ion-col col-2></ion-col>
+      </ion-row>
+    </ion-grid>
+ </ion-item>
+</ion-list>
 </ion-content>
+<ion-footer class="ion-no-padding">
+  <ion-toolbar class="ion-no-padding">
+    <ion-button color="secondary" class="footer-button" expand="full" button (click)="onGiftPointClicked()">put the seal on</ion-button>
+  </ion-toolbar>
+</ion-footer>
