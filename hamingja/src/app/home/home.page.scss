@@ -1,1 +1,21 @@
-
+ion-title{
+	background-image:url('../../assets/img/hamingja-logo-white.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 57px;
+    text-indent: -9999px;
+    background-position: 7% 50%;
+    background-size: contain;
+    background-color:var(--ion-color-secondary);
+    background-size: 29%;
+}
+ion-tab-button{	
+	--background{
+	    background-color:var(--ion-color-secondary);	
+	}
+	--color{
+	    background-color:red;	
+	}
+}
+	
