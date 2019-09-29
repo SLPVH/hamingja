@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { BITBOX } from 'bitbox-sdk/lib/BITBOX';
-import { Utils, BitboxNetwork, SlpUtxoJudgement } from 'slpjs';
+import { Utils, BitboxNetwork } from 'slpjs';
 import { HDNode } from 'bitcoincashjs-lib';
 import BigNumber from 'bignumber.js';
 import { Stamp } from './stamp';
+import { environment } from 'src/environments/environment';
 
-const network: string = 'testnet';
+const network = environment.network;
 const restURL = (network === 'mainnet') ? 'https://rest.bitcoin.com/v2/' : 'https://trest.bitcoin.com/v2/'
 
 @Injectable({
@@ -206,7 +207,7 @@ export class WalletService {
     return txid;
   }
 
-  async sendStamps(destAddress: string, tokenId: string, amount: number) {
+  async sendStamps(destAddress: string, tokenId: string, amount: number, customerAddress: string) {
     const fundingAddress = this.slpAddress();
     const fundingfWif = this.bitbox.HDNode.toWIF(this.slpNode());
     const bchChangeReceiverAddress = this.slpAddress();
@@ -218,7 +219,9 @@ export class WalletService {
       return;
     }
 
+    console.log(balances.slpTokenBalances)
     if (!balances.slpTokenBalances[tokenId]) {
+      console.log('no balance:', tokenId)
       return;
     }
 
@@ -236,7 +239,52 @@ export class WalletService {
       inputUtxos,
       [destAddress, bchChangeReceiverAddress],
       bchChangeReceiverAddress,
+      [
+        {satoshis: 2000, receiverAddress: bchChangeReceiverAddress},
+        {satoshis: 3000, receiverAddress: destAddress},
+      ]
     );
+
+    console.log(txid);
+    console.log('send info');
+    const infoTxid = await this.sendTokenInfo(customerAddress, tokenId, {txid, vout: 3, satoshis: 2000});
+    console.log(infoTxid);
+
+    return txid;
+  }
+
+  async sendTokenInfo(customerAddress: string, tokenId: string, utxo: {txid: string, vout: number, satoshis: number}) {
+    const address = this.cashAddress();
+
+    const ownerPkh = this.bitbox.Address.cashToHash160(address);
+    const info = {
+      id: 'hamingja',
+      owner_pkh: ownerPkh,
+      token_id: tokenId,
+    };
+    const data = this.bitbox.Script.encode([
+      this.bitbox.Script.opcodes.OP_RETURN,
+      Buffer.from(JSON.stringify(info), 'utf-8'),
+    ]);
+
+    let balance = 0;
+    const txb = new this.bitbox.TransactionBuilder(network);
+    txb.addInput(utxo.txid, utxo.vout);
+    balance += utxo.satoshis;
+
+    const fee = 1000;
+
+    txb.addOutput(data, 0);
+    txb.addOutput(customerAddress, balance - fee);
+
+    const key = this.bitbox.HDNode.toKeyPair(this.slpNode());
+    // utxos.forEach((utxo, i) => {
+      txb.sign(0, key, undefined, txb.hashTypes.SIGHASH_ALL, utxo.satoshis);
+    // });
+
+    const hex = txb.build().toHex();
+
+    const txid = await this.bitbox.RawTransactions.sendRawTransaction(hex);
 
     return txid;
   }

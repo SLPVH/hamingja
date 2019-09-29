@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   spednServer: 'http://localhost:3000',
+  network: 'mainnet',
 };
 
 /*

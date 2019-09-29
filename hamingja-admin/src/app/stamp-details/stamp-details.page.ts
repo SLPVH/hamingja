@@ -37,23 +37,31 @@ export class StampDetailsPage implements OnInit {
   }
 
   async onGiftPointClicked() {
-    const modal = await this.modalController.create({
-      component: ScanQRPage,
-    });
+    // const modal = await this.modalController.create({
+    //   component: ScanQRPage,
+    // });
 
-    await modal.present();
+    // await modal.present();
 
-    const {data}: OverlayEventDetail<ScanResult> = await modal.onWillDismiss();
-    if (!data || !data.text) {
-      return;
-    }
+    // const {data}: OverlayEventDetail<ScanResult> = await modal.onWillDismiss();
+    // if (!data || !data.text) {
+    //   return;
+    // }
 
-    console.log(data.text);
+    // console.log(data.text);
 
-    const destAddress = await this.spedn.getAddress(this.wallet.cashAddress(), data.text, 5, this.stamp.tokenId);
+    // const customerAddress = data.text;
+    const customerAddress = 'bitcoincash:qz9plpytat9flm938f8q59hgv80jxdax6s5ytm2jkx';
+
+    const destAddress = await this.spedn.getAddress(this.wallet.cashAddress(), customerAddress, this.stamp.max, this.stamp.tokenId);
     console.log(destAddress);
 
-    const txid = await this.wallet.sendStamps(this.wallet.toSlpAddress(destAddress), this.stamp.tokenId, 1);
-    console.log(txid);
+    const txid = await this.wallet.sendStamps(this.wallet.toSlpAddress(destAddress), this.stamp.tokenId, 1, customerAddress);
+    if (txid) {
+      console.log('success');
+    } else {
+      console.log('error');
+    }
+
   }
 }
