@@ -17,13 +17,17 @@ export class ResultPage implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.result = params.get('result');
       this.backPath = params.get('back_path') || '';
-      this.param = JSON.parse(params.get('param'));
+      this.param = JSON.parse(params.get('param')) || undefined;
 
       console.log(this.result, this.backPath, this.param)
     });
   }
 
   onBackClicked() {
-    this.router.navigate([this.backPath, this.param]);
+    const navParam = [this.backPath];
+    if (this.param) {
+      navParam.push(this.param);
+    }
+    this.router.navigate(navParam);
   }
 }

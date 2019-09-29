@@ -5,6 +5,14 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { WalletService } from './services/wallet.service';
 
+import * as firebase from 'firebase/app';
+import 'firebase/storage';
+
+import { environment } from 'src/environments/environment';
+import { CloudStorageService } from './services/cloud-storage.service';
+
+firebase.initializeApp(environment.firebaseConfig);
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -27,6 +35,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private wallet: WalletService,
+    private cloudStorage: CloudStorageService,
   ) {
     this.initializeApp();
   }
@@ -37,6 +46,8 @@ export class AppComponent {
       this.splashScreen.hide();
     }).then(() => {
       return this.wallet.initialize();
+    }).then(() => {
+      this.cloudStorage.initialize();
     });
   }
 }

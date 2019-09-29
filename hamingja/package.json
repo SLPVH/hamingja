@@ -34,6 +34,7 @@
     "bignumber.js": "8",
     "bitbox-sdk": "^8.8.0",
     "core-js": "^2.5.4",
+    "firebase": "^7.0.0",
     "ngx-kjua": "^1.6.0",
     "process": "^0.11.10",
     "rxjs": "~6.5.1",
