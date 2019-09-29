@@ -18,6 +18,6 @@ export class StampsPage implements OnInit {
     console.log(this.stamps);
 
     // for debug
-    this.stamps.push({name: 'dummy', max: 5, coupon: '1 free', balance: 10000, tokenId: 'txid'})
+    this.stamps.push({name: 'dummy', max: 7, coupon: '1 free', balance: 10000, tokenId: 'txid'})
   }
 }

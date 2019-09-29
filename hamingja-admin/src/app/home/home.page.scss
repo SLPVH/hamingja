@@ -1,1 +1,18 @@
+ion-header{
+	ion-title{
+	  background-image:url('../../assets/img/hamingja-logo.svg');
+	  background-repeat: no-repeat;
+	  background-position: center;
+	  text-indent: -99999rem;
+	  height: 40px;
+	  background-size: contain;
+	  margin-right: 48px;      
+	}
+}
+ion-tab-button.tab-selected{
+	border-bottom: 2px solid	
+}
+ion-label{
+	font-weight: bold;
+}
 
