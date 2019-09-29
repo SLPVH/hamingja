@@ -6,9 +6,9 @@ import { QRCodePage } from '../modal/qrcode/qrcode.page';
 import { ScanQRPage } from '../modal/scan-qr/scan-qr.page';
 import { OverlayEventDetail } from '@ionic/core';
 import { ScanResult } from '../modal/scan-qr/scan-result';
+import { WalletService } from '../services/wallet.service';
 
 interface StampDetails extends Stamp {
-  coupon: string;
   info: string;
 }
 
@@ -18,14 +18,21 @@ interface StampDetails extends Stamp {
   styleUrls: ['./stamp-details.page.scss'],
 })
 export class StampDetailsPage implements OnInit {
-  stamp: Partial<StampDetails> = {max: 5, info: 'info', coupon: '1 free'};
+  stamp: StampDetails;
 
-  constructor(private route: ActivatedRoute, private modalController: ModalController) { }
+  constructor(
+    private route: ActivatedRoute,
+    private modalController: ModalController,
+    private wallet: WalletService,
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.stamp.name = params.get('name');
-      this.stamp.amount = parseInt(params.get('amount'));
+      const obj = JSON.parse(params.get('stamp'));
+      this.stamp = obj;
+      this.stamp.max = parseInt(obj.max);
+      this.stamp.amount = parseInt(obj.amount);
+      this.stamp.info = 'info';
 
       console.log(this.stamp);
     });
@@ -35,7 +42,7 @@ export class StampDetailsPage implements OnInit {
     const modal = await this.modalController.create({
       component: QRCodePage,
       componentProps: {
-        data: 'bitcoincash:qpdach7c3l69sxf0unh72zpf2tpxzvlzhsv23qvq93',
+        data: this.wallet.cashAddress(),
       },
     });
 
@@ -43,17 +50,19 @@ export class StampDetailsPage implements OnInit {
   }
 
   async onUseThisClicked() {
-    const modal = await this.modalController.create({
-      component: ScanQRPage,
-    });
+    // const modal = await this.modalController.create({
+    //   component: ScanQRPage,
+    // });
 
-    await modal.present();
+    // await modal.present();
 
-    const {data}: OverlayEventDetail<ScanResult> = await modal.onWillDismiss();
-    if (!data || !data.text) {
-      return;
-    }
+    // const {data}: OverlayEventDetail<ScanResult> = await modal.onWillDismiss();
+    // if (!data || !data.text) {
+    //   return;
+    // }
 
-    console.log(data.text);
+    // console.log(data.text);
+
+    this.wallet.useStamp(this.stamp);
   }
 }

@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="stamp">
     <ion-item *ngIf="stamp.amount >= stamp.max">
       Congraturation!!
     </ion-item>
@@ -17,7 +17,7 @@
     <ion-item>
       <ion-label>Buy {{stamp.max}} Get {{stamp.coupon}}</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="stamp && stamp.amount">
       <ion-icon name="star" *ngFor="let _ of [].constructor(stamp.amount)"></ion-icon>
     </ion-item>
     <ion-item>
@@ -27,6 +27,6 @@
     </ion-item>
   </ion-list>
 
-  <ion-button *ngIf="stamp.amount < stamp.max" expand="full" (click)="onGetStampClicked()">Get Stamp</ion-button>
-  <ion-button *ngIf="stamp.amount >= stamp.max" expand="full" (click)="onUseThisClicked()">Use This</ion-button>
+  <ion-button *ngIf="stamp && stamp.amount < stamp.max" expand="full" (click)="onGetStampClicked()">Get Stamp</ion-button>
+  <ion-button *ngIf="stamp && stamp.amount >= stamp.max" expand="full" (click)="onUseThisClicked()">Use This</ion-button>
 </ion-content>

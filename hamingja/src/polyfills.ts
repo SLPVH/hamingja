@@ -64,3 +64,12 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+// "global is not defined"の対応
+(window as any).global = window;
+
+// "Buffer is not defined"の対応
+global.Buffer = global.Buffer || require('buffer').Buffer;
+
+// "process is not defined"の対応
+global.process = global.process || require('process');

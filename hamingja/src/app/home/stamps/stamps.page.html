@@ -4,7 +4,7 @@
   </ion-card>
 
   <ion-list *ngFor="let stamp of stamps">
-    <ion-card button [routerLink]="['/stamp-details', stamp]">
+    <ion-card button [routerLink]="['/stamp-details', {stamp: stringify(stamp)}]">
       <ion-card-content>
         <ion-label>{{stamp.name}}</ion-label>
         <div>
