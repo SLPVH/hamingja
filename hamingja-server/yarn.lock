@@ -809,6 +809,14 @@ core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
+cors@^2.8.5:
+  version "2.8.5"
+  resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
+  integrity sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
+  dependencies:
+    object-assign "^4"
+    vary "^1"
+
 cp-file@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/cp-file/-/cp-file-6.2.0.tgz#40d5ea4a1def2a9acdd07ba5c0b0246ef73dc10d"
@@ -2146,7 +2154,7 @@ nyc@*:
     yargs "^13.2.2"
     yargs-parser "^13.0.0"
 
-object-assign@^4.0.1, object-assign@^4.1.1:
+object-assign@^4, object-assign@^4.0.1, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
@@ -2929,10 +2937,15 @@ spdx-license-ids@^3.0.0:
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.5.tgz#3694b5804567a458d3c8045842a6358632f62654"
   integrity sha512-J+FWzZoynJEXGphVIS+XEh3kFSjZX/1i9gFBaWQcB+/tmpe2qUsSBABpcxqxnAxFdiUFEgAX1bjYGQvIZmoz9Q==
 
-spedn@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/spedn/-/spedn-0.1.3.tgz#39b2182bf80f686f07c477f462e0f7f6b0a3a6b0"
-  integrity sha512-9oGmrfNO35NBo0rS0w85xkb9UAlDXXAAEngUTml91WwvOFJHLtov3J6sKm/g8Q4cZOIWVOJ/okVXLLWVCQREcg==
+spedn-cli@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/spedn-cli/-/spedn-cli-0.1.4.tgz#2158cd7406a196b9ac77a5ccb965fc7784f15ae7"
+  integrity sha512-ajoSNMwwW5sPE82hiHqDiAtIHxysfGOYsmEfOh4ieX/FEA1HvB6IY2MzjTKcrEgWRHZC8i2FgjWCJo1qmOMMQA==
+
+spedn@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/spedn/-/spedn-0.1.4.tgz#0d4864ec5ca1045d5358a2edadea43b0f2a664ee"
+  integrity sha512-HmSa+xii8QZFYBSBx+NbyecgweaNlnu3K3H78GPb3gDpvOY3tlx1zjMJdBnF+Gqf8ZAA48GNcnB3GVmOWvka8g==
   dependencies:
     "@types/node" "^12.6.8"
     bitbox-sdk "^8.5.1"
@@ -3275,7 +3288,7 @@ varuint-bitcoin@^1.0.1, varuint-bitcoin@^1.0.4, varuint-bitcoin@^1.1.0:
   dependencies:
     safe-buffer "^5.1.1"
 
-vary@~1.1.2:
+vary@^1, vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=

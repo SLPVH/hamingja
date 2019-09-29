@@ -5,7 +5,9 @@
     "types": []
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "node_modules/bitbox-sdk/**/*.ts",
+    "node_modules/slpjs/**/*.ts"
   ],
   "exclude": [
     "src/test.ts",

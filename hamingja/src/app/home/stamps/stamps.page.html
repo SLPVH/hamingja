@@ -2,4 +2,15 @@
   <ion-card button (click)="onNewCardClicked()">
     <ion-card-content>+</ion-card-content>
   </ion-card>
+
+  <ion-list *ngFor="let stamp of stamps">
+    <ion-card button [routerLink]="['/stamp-details', {stamp: stringify(stamp)}]">
+      <ion-card-content>
+        <ion-label>{{stamp.name}}</ion-label>
+        <div>
+          <ion-icon name="star" *ngFor="let _ of [].constructor(stamp.amount)"></ion-icon>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>

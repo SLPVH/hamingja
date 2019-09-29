@@ -18,7 +18,8 @@
     <ion-item>
       <ion-text color="danger">*</ion-text>
       <ion-label>Buy</ion-label>
-      <ion-select value="5">
+      <ion-select value="5" [(ngModel)]="max">
+        <ion-select-option value="1">1 (debug)</ion-select-option>
         <ion-select-option value="5">5</ion-select-option>
         <ion-select-option value="10">10</ion-select-option>
       </ion-select>
@@ -26,7 +27,7 @@
     <ion-item>
       <ion-text color="danger">*</ion-text>
       <ion-label>Get</ion-label>
-      <ion-select value="1 free">
+      <ion-select value="1 free" [(ngModel)]="coupon">
         <ion-select-option value="1 free">1 free</ion-select-option>
         <ion-select-option value="10% off">10% off</ion-select-option>
         <ion-select-option value="20% off">20% off</ion-select-option>

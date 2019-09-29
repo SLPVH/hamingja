@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="stamp">
+    <ion-item *ngIf="stamp.amount >= stamp.max">
+      Congraturation!!
+    </ion-item>
+    <ion-item>
+      <ion-label>{{stamp.name}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Buy {{stamp.max}} Get {{stamp.coupon}}</ion-label>
+    </ion-item>
+    <ion-item *ngIf="stamp && stamp.amount">
+      <ion-icon name="star" *ngFor="let _ of [].constructor(stamp.amount)"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        {{stamp.info}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button *ngIf="stamp && stamp.amount < stamp.max" expand="full" (click)="onGetStampClicked()">Get Stamp</ion-button>
+  <ion-button *ngIf="stamp && stamp.amount >= stamp.max" expand="full" (click)="onUseThisClicked()">Use This</ion-button>
+</ion-content>

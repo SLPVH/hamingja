@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { ScanQRPage } from '../modal/scan-qr/scan-qr.page';
 import { OverlayEventDetail } from '@ionic/core';
 import { ScanResult } from '../modal/scan-qr/scan-result';
+import { WalletService } from '../services/wallet.service';
 
 @Component({
   selector: 'app-withdraw',
@@ -12,7 +13,7 @@ import { ScanResult } from '../modal/scan-qr/scan-result';
 export class WithdrawPage implements OnInit {
   address: string = '';
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController, private wallet: WalletService) { }
 
   ngOnInit() {
   }
@@ -34,5 +35,12 @@ export class WithdrawPage implements OnInit {
 
   async onWithdrawClicked() {
     console.log(this.address);
+    if (this.address === '') {
+      return;
+    }
+
+    const txid = await this.wallet.withdrawBch(this.address);
+
+    console.log(txid);
   }
 }

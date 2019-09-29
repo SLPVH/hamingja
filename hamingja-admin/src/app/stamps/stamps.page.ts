@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Stamp } from './stamp';
+import { Stamp } from '../services/stamp';
+import { WalletService } from '../services/wallet.service';
 
 @Component({
   selector: 'app-stamps',
@@ -7,11 +8,16 @@ import { Stamp } from './stamp';
   styleUrls: ['./stamps.page.scss'],
 })
 export class StampsPage implements OnInit {
-  public stamps: Stamp[] = [{name: 'dummy', max: 7}];
+  public stamps: Stamp[] = [];
 
-  constructor() { }
+  constructor(private wallet: WalletService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.stamps = await this.wallet.stamps();
+
+    console.log(this.stamps);
+
+    // for debug
+    this.stamps.push({name: 'dummy', max: 7, coupon: '1 free', balance: 10000, tokenId: 'txid'})
   }
-
 }

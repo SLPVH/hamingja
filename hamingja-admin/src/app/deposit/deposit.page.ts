@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WalletService } from '../services/wallet.service';
 
 @Component({
   selector: 'app-deposit',
@@ -6,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./deposit.page.scss'],
 })
 export class DepositPage implements OnInit {
-  address: string = 'bitcoincash:qzfe0fj9u96r2jpln4ykegqpfvg2ucuuxyhz0zmkcy';
+  address: string = '';
 
-  constructor() { }
+  constructor(private wallet: WalletService) { }
 
   ngOnInit() {
+    this.address = this.wallet.cashAddress();
   }
 
 }

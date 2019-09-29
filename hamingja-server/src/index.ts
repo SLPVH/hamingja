@@ -7,6 +7,7 @@ const host = process.env.HOST || 'localhost';
 
 async function main() {
   const app = createExpressServer({
+    cors: true,
     controllers: [AddressController]
   });
 
