@@ -30,6 +30,9 @@ export class AddressController {
       tokenId: Buffer.from(tokenId, 'hex'),
     });
 
-    return instance.getAddress(network);
+    return {
+      address: instance.getAddress(network),
+      redeem_script: instance.redeemScript.toString('hex'),
+    };
   }
 }

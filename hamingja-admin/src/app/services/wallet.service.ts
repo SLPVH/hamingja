@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { BITBOX } from 'bitbox-sdk/lib/BITBOX';
-import { Utils, BitboxNetwork } from 'slpjs';
+import { Utils, BitboxNetwork, SlpUtxoJudgement } from 'slpjs';
 import { HDNode } from 'bitcoincashjs-lib';
 import BigNumber from 'bignumber.js';
 import { Stamp } from './stamp';
@@ -54,6 +54,14 @@ export class WalletService {
     return Utils.toSlpAddress(this.cashAddress());
   }
 
+  toCashAddress(address: string): string {
+    return Utils.toCashAddress(address);
+  }
+
+  toSlpAddress(address: string): string {
+    return Utils.toSlpAddress(address);
+  }
+
   async withdrawBch(dest: string): Promise<string | undefined> {
     const address = this.cashAddress();
     const utxos = await this.bitbox.Address.utxo(address);
@@ -96,7 +104,7 @@ export class WalletService {
 
   async createNewToken(name: string, ticker: string, document: string | Object): Promise<string | undefined> {
     const fundingAddress = this.slpAddress();
-    const fundinfWif = this.bitbox.HDNode.toWIF(this.slpNode());
+    const fundingfWif = this.bitbox.HDNode.toWIF(this.slpNode());
     const tokenReceiverAddress = this.slpAddress();
     const bchChangeReceiverAddress = this.slpAddress();
     const batonReceiverAddress = this.slpAddress();
@@ -118,7 +126,7 @@ export class WalletService {
       documentUri = JSON.stringify(document);
     }
 
-    balances.nonSlpUtxos.forEach(utxo => utxo.wif = fundinfWif);
+    balances.nonSlpUtxos.forEach(utxo => utxo.wif = fundingfWif);
 
     const txid = await bitboxNetwork.simpleTokenGenesis(
       name,
@@ -143,10 +151,16 @@ export class WalletService {
       return;
     }
 
-    return Object.keys(balances.slpTokenUtxos).map(key => {
-      const details = balances.slpTokenUtxos[key][0].slpTransactionDetails;
+    return await Promise.all(Object.keys(balances.slpTokenUtxos).map(async (key) => {
+      const details = await bitboxNetwork.getTokenInformation(key);
       const document = details.documentUri;
+
+      if (!document) {
+        return undefined;
+      }
+
       const {max, coupon} = JSON.parse(document);
+
       return {
         balance: balances.slpTokenBalances[key].toNumber(),
         name: details.name,
@@ -154,12 +168,12 @@ export class WalletService {
         coupon,
         tokenId: key,
       };
-    });
+    }).filter(v => v !== undefined));
   }
 
   async mint(tokenId: string, amount: number): Promise<string | undefined> {
     const fundingAddress = this.slpAddress();
-    const fundinfWif = this.bitbox.HDNode.toWIF(this.slpNode());
+    const fundingfWif = this.bitbox.HDNode.toWIF(this.slpNode());
     const tokenReceiverAddress = this.slpAddress();
     const bchChangeReceiverAddress = this.slpAddress();
     const batonReceiverAddress = this.slpAddress();
@@ -178,7 +192,7 @@ export class WalletService {
     const additionalTokenQty = new BigNumber(amount);
 
     const inputUtxos = [...balances.slpBatonUtxos[tokenId], ...balances.nonSlpUtxos];
-    inputUtxos.forEach(utxo => utxo.wif = fundinfWif);
+    inputUtxos.forEach(utxo => utxo.wif = fundingfWif);
 
     const txid = await bitboxNetwork.simpleTokenMint(
       tokenId,
@@ -187,6 +201,41 @@ export class WalletService {
       tokenReceiverAddress,
       batonReceiverAddress,
       bchChangeReceiverAddress
+    );
+
+    return txid;
+  }
+
+  async sendStamps(destAddress: string, tokenId: string, amount: number) {
+    const fundingAddress = this.slpAddress();
+    const fundingfWif = this.bitbox.HDNode.toWIF(this.slpNode());
+    const bchChangeReceiverAddress = this.slpAddress();
+
+    const bitboxNetwork = new BitboxNetwork(this.bitbox);
+
+    const balances = await bitboxNetwork.getAllSlpBalancesAndUtxos(fundingAddress);
+    if (Array.isArray(balances)) {
+      return;
+    }
+
+    if (!balances.slpTokenBalances[tokenId]) {
+      return;
+    }
+
+    const sendAmount = [new BigNumber(amount), balances.slpTokenBalances[tokenId].minus(amount)];
+
+    const inputUtxos = [
+      ...balances.slpTokenUtxos[tokenId],
+      ...balances.nonSlpUtxos
+    ];
+    inputUtxos.forEach(utxo => utxo.wif = fundingfWif);
+
+    const txid = await bitboxNetwork.simpleTokenSend(
+      tokenId,
+      sendAmount,
+      inputUtxos,
+      [destAddress, bchChangeReceiverAddress],
+      bchChangeReceiverAddress,
     );
 
     return txid;

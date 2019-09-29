@@ -6,6 +6,7 @@ import { ScanQRPage } from '../modal/scan-qr/scan-qr.page';
 import { OverlayEventDetail } from '@ionic/core';
 import { ScanResult } from '../modal/scan-qr/scan-result';
 import { WalletService } from '../services/wallet.service';
+import { SpednService } from '../services/spedn.service';
 
 @Component({
   selector: 'app-stamp-details',
@@ -19,6 +20,8 @@ export class StampDetailsPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private modalController: ModalController,
+    private wallet: WalletService,
+    private spedn: SpednService,
   ) { }
 
   ngOnInit() {
@@ -46,5 +49,11 @@ export class StampDetailsPage implements OnInit {
     }
 
     console.log(data.text);
+
+    const destAddress = await this.spedn.getAddress(this.wallet.cashAddress(), data.text, 5, this.stamp.tokenId);
+    console.log(destAddress);
+
+    const txid = await this.wallet.sendStamps(this.wallet.toSlpAddress(destAddress), this.stamp.tokenId, 1);
+    console.log(txid);
   }
 }

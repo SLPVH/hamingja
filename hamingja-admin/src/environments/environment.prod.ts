@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  spednServer: 'http://localhost:3000',
 };
