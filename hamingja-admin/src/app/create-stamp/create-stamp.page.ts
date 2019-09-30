@@ -15,9 +15,9 @@ export class CreateStampPage implements OnInit {
   public max: string = '5';
   public coupon: string = '1 free';
   public file?: File;
-  public stampShape: string;
-  public stampColor: string;
-  public bgColor: string;
+  public stampShape: string = 'star';
+  public stampColor: string = '#2889e9';
+  public bgColor: string = '#e920e9';
 
   constructor(
     private wallet: WalletService,
