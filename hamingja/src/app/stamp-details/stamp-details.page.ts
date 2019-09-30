@@ -7,6 +7,7 @@ import { ScanQRPage } from '../modal/scan-qr/scan-qr.page';
 import { OverlayEventDetail } from '@ionic/core';
 import { ScanResult } from '../modal/scan-qr/scan-result';
 import { WalletService } from '../services/wallet.service';
+import { CloudStorageService } from '../services/cloud-storage.service';
 
 interface StampDetails extends Stamp {
   info: string;
@@ -19,15 +20,17 @@ interface StampDetails extends Stamp {
 })
 export class StampDetailsPage implements OnInit {
   stamp: StampDetails;
+  image: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private modalController: ModalController,
     private wallet: WalletService,
+    private cloudStorage: CloudStorageService,
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe(async params => {
       const obj = JSON.parse(params.get('stamp'));
       this.stamp = obj;
       this.stamp.max = parseInt(obj.max);
@@ -35,7 +38,17 @@ export class StampDetailsPage implements OnInit {
       this.stamp.info = 'info';
 
       console.log(this.stamp);
+
+      try {
+        const fileInfo = await this.cloudStorage.getFileInfo(this.stamp.tokenId);
+
+        this.image = fileInfo.url;
+        console.log(fileInfo);
+      } catch (e) {
+        console.log(e);
+      }
     });
+    console.log(this.image)
   }
 
   async onGetStampClicked() {

@@ -9,7 +9,7 @@
   <ion-list>
 
     <ion-card class="stamp-card-style card-id-2" button [routerLink]="['/stamp-details', stamp]">
-      <ion-img src="assets/cards/pow-yoga.png"></ion-img>
+      <ion-img [src]="image" *ngIf="image !== ''"></ion-img>
       <ion-card-content>
         <div class="icons_wrapper">
           <ion-icon name="heart" *ngFor="let _ of [].constructor(stamp.max)"></ion-icon>

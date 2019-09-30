@@ -13,7 +13,7 @@
       <ion-input placeholder="Name of card" required [(ngModel)]="cardName"></ion-input>
     </ion-item>
     <ion-item>
-      TODO: select image
+      <ion-input type="file" (change)="onFileChanged($event)"></ion-input>
     </ion-item>
     <ion-item>
       <ion-text color="danger">*</ion-text>
@@ -52,7 +52,13 @@
 </ion-content>
 <ion-footer class="ion-no-padding">
   <ion-toolbar class="ion-no-padding">
-    <ion-button color="secondary" class="footer-button" expand="full" [disabled]="cardName === ''">Create Loyalty Card</ion-button>
+    <ion-button
+      color="secondary"
+      class="footer-button"
+      expand="full"
+      [disabled]="cardName === ''"
+      (click)="onCreateClicked()"
+    >Create Loyalty Card</ion-button>
   </ion-toolbar>
 
 </ion-footer>
