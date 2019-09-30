@@ -292,7 +292,7 @@
 					</textarea>
 					</section>
 				</section>
-				
+
 				<section data-markdown>
 					<textarea data-template>
 					Every one can create own loyalty cards.
@@ -344,31 +344,70 @@
 				<section data-markdown>
 					<textarea data-template>
 						## Non Tradable SLP Tokens
-						This is important interms of mass adoption. Not everyone embrace tradability since dificulty of contorol of loyalty points. We focus on better usabilty for merchants who actually engaging people to use this app. 
+						This is important interms of mass adoption. Not everyone embrace tradability since dificulty of contorol of loyalty points if it's easy to trade. We focused on better usabilty for merchants who actually engaging people to use this app. To be able to limit SLP token's tradability, we utilizes checkSig checkDataSig. So end-user can only send back tokens to its issuer. 
 					</textarea>
 				</section>
 
 				<section data-markdown>
 					<textarea data-template>
-						## OP_CHECKDATASIG
-						To be able to limit SLP token's tradability, we utilizes OP_CHECKDATASIG covenants. So end-user can only send tokens to issuer. 
-						```javascript
-							verify checkDataSig(toDataSig(sig), sha256(preimage), pk);
+						### checkSig + checkDataSig = verify coventants						```javascript
+						verify checkSig(sig, pk);
+						verify checkDataSig(toDataSig(sig), sha256(preimage), pk);
 						```
 					</textarea>
 				</section>			
-	
-
 				<section data-markdown>
 					<textarea data-template>
-						## OP_CHECKDATASIG
-						To be able to limit SLP token's tradability, we utilizes OP_CHECKDATASIG covenants. So end-user can only send tokens to issuer. 
+						## CONSTRUCTING SLP OP_return
 						```javascript
-							verify checkDataSig(toDataSig(sig), sha256(preimage), pk);
+						bin opReturn = 0x6a;
+						bin lokadId = 0x04534c5000;
+						bin tokenType = 0x0101;
+						bin txType = 0x0453454e44;
+						bin pushId = 0x20;
+						bin pushMax = 0x08;
+						bin pushOpReturn = 0x37;
+
+						// slp op_return
+						bin out0 = num2bin(0, 8) . pushOpReturn . opReturn . lokadId . tokenType . txType . pushId . tokenId . pushMax . maxValue;
+
 						```
 					</textarea>
 				</section>
-			</section>		
+				<section data-markdown>
+					<textarea data-template>
+						## CONSTRUCTING Slp Outputs
+						```javascript
+						// p2pkh constants
+						bin opDup = 0x76;
+						bin opHash160 = 0xa9;
+						bin opEqual = 0x87;
+						bin pushHash = 0x14;
+						bin opEqualverify = 0x88;
+						bin opChecksig = 0xac;
+						bin pushP2pkh = 0x19;
+
+						// slp output
+						bin out1 = num2bin(546, 8) . pushP2pkh . opDup . opHash160 . pushHash . ownerPkh . opEqualverify . opChecksig;
+						```
+					</textarea>
+					
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Verify Slp Outputs
+						```javascript
+						// Verify Slp Outputs
+						verify hash256(out0 . out1 . changeOutput) == Sha256(hashOutput);
+						```
+					</textarea>
+				</section>	
+
+
+			</section>
+		
+
 	<!--Adoption-->
 			<section>
 				<section data-markdown>
