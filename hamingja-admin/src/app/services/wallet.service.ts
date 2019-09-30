@@ -14,12 +14,11 @@ const restURL = (network === 'mainnet') ? 'https://rest.bitcoin.com/v2/' : 'http
   providedIn: 'root'
 })
 export class WalletService {
-  bitbox: BITBOX;
+  bitbox = new BITBOX({restURL});
   xpriv: string;
   masterHDNode: HDNode;
 
   constructor(private storage: Storage) {
-    this.bitbox = new BITBOX({restURL});
   }
 
   async initialize() {
@@ -115,6 +114,7 @@ export class WalletService {
     if (Array.isArray(balances)) {
       return;
     }
+    console.log(balances);
 
     const decimals = 0;
     const initialTokenQty = new BigNumber(10000000);

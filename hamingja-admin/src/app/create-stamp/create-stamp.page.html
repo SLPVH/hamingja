@@ -34,28 +34,28 @@
     </ion-item>
     <ion-item>
       <ion-input type="file" (change)="onFileChanged($event)"></ion-input>
-    </ion-item>    
+    </ion-item>
     <ion-item>
       <ion-label>Stamp Shape</ion-label>
-      <ion-select>
-        <ion-select-option value="">star</ion-select-option>
-        <ion-select-option value="">ice-cream</ion-select-option>
-        <ion-select-option value="">heart</ion-select-option>
-        <ion-select-option value="">cafe</ion-select-option>        
-        <ion-select-option value="">cut</ion-select-option>        
-         <ion-select-option value="">beer</ion-select-option>        
-         <ion-select-option value="">scissors</ion-select-option>        
+      <ion-select [(ngModel)]="stampShape">
+        <ion-select-option value="star">star</ion-select-option>
+        <ion-select-option value="ice-cream">ice-cream</ion-select-option>
+        <ion-select-option value="heart">heart</ion-select-option>
+        <ion-select-option value="cafe">cafe</ion-select-option>
+        <ion-select-option value="cut">cut</ion-select-option>
+        <ion-select-option value="beer">beer</ion-select-option>
+        <ion-select-option value="scissors">scissors</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-text></ion-text>
-      <ion-input placeholder="Color of Stamps in hex"></ion-input>
+      <ion-input placeholder="Color of Stamps in hex" [(ngModel)]="stampColor"></ion-input>
     </ion-item>
     <ion-item>
       <ion-text></ion-text>
-      <ion-input placeholder="Background Color in hex"></ion-input>
+      <ion-input placeholder="Background Color in hex" [(ngModel)]="bgColor"></ion-input>
     </ion-item>
-    <ion-item>
+    <!-- <ion-item>
       <ion-label>Termination</ion-label>
       <ion-toggle [(ngModel)]="enableTermination"></ion-toggle>
     </ion-item>
@@ -66,7 +66,7 @@
     <ion-item *ngIf="enableTermination">
       <ion-label>Termination Time</ion-label>
       <ion-datetime displayFormat="HH:mm:ss"></ion-datetime>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
 </ion-content>
 <ion-footer class="ion-no-padding">

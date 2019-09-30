@@ -15,6 +15,9 @@ export class CreateStampPage implements OnInit {
   public max: string = '5';
   public coupon: string = '1 free';
   public file?: File;
+  public stampShape: string;
+  public stampColor: string;
+  public bgColor: string;
 
   constructor(
     private wallet: WalletService,
@@ -46,7 +49,13 @@ export class CreateStampPage implements OnInit {
 
     console.log(txid);
 
-    const result = await this.cloudStorage.uploadImage(txid, this.file, {});
+    const metadata = {
+      stamp_shape: this.stampShape,
+      stamp_color: this.stampColor,
+      bg_color: this.bgColor,
+    };
+
+    const result = await this.cloudStorage.uploadImage(txid, this.file, metadata);
     console.log(result);
 
     this.router.navigate(['/result', {result: `Created Stamp Card`, back_path: '/home/stamps'}]);
