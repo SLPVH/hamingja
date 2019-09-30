@@ -1,0 +1,38 @@
+.stamp-card-style{
+	width: auto;
+	height: auto;
+	ion-card-content{
+	height: 60px;
+	padding: 0 12px;
+	}	
+}
+
+//to do 
+.card-id-1{
+	background-color: #f5fff4;
+	ion-icon{
+		color:#e0b500;
+	}
+}
+.card-id-2{
+	background-color: #faebd7;
+	ion-icon{
+		color:#7d4a63;
+	}	
+}
+.card-id-3{
+	background-color: #282828;
+	ion-icon{
+		color:#ffffff;
+	}	
+}
+.icons_wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 10px;
+}
+ion-icon{
+	height: 2.2rem;
+	width: 2.2rem;
+	color: var(--ion-color-secondary);
+}
