@@ -12,6 +12,5 @@ RUN yarn install
 COPY . .
 
 # CMD ["start.sh"]
-CMD ionic serve --port=$PORT --host=$HOST
+CMD ionic serve --port=$PORT --external --disableHostCheck
 # CMD ["ionic", "serve"]
-

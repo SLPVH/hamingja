@@ -21,11 +21,11 @@ export class CloudStorageService {
   async getFileInfo(id: string) {
     const ref = this.storage.ref().child(`images/${id}`);
 
-    // const metadata = await ref.getMetadata();
+    const metadata = await ref.getMetadata();
     const url: string = await ref.getDownloadURL();
 
     return {
-      // metadata,
+      metadata,
       url,
     }
   }

@@ -39,14 +39,13 @@ export class StampDetailsPage implements OnInit {
 
       console.log(this.stamp);
 
-      try {
-        const fileInfo = await this.cloudStorage.getFileInfo(this.stamp.tokenId);
-
-        this.image = fileInfo.url;
-        console.log(fileInfo);
-      } catch (e) {
-        console.log(e);
-      }
+      // try {
+      //   const fileInfo = await this.cloudStorage.getFileInfo(this.stamp.tokenId);
+      //   this.image = fileInfo.url;
+      //   console.log(fileInfo);
+      // } catch (e) {
+      //   console.log(e);
+      // }
     });
     console.log(this.image)
   }

@@ -12,7 +12,7 @@
       <ion-img [src]="image" *ngIf="image !== ''"></ion-img>
       <ion-card-content>
         <div class="icons_wrapper">
-          <ion-icon name="heart" *ngFor="let _ of [].constructor(stamp.max)"></ion-icon>
+          <ion-icon [name]="stampShape" *ngFor="let _ of [].constructor(stamp.max)"></ion-icon>
         </div>
       </ion-card-content>
     </ion-card>
