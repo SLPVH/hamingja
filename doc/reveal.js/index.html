@@ -37,14 +37,14 @@
 
 	<!--Traditional Loyalty Cards-->
 
-				<section class="image-bg" data-background-image="img/loyalty_cards.jpg">
-				</section>
+
 				<section data-markdown>
 					<textarea data-template>
 						## Traditional Loyalty Cards
 					</textarea>										
 				</section>
-
+				<section class="image-bg" data-background-image="img/loyalty_cards.jpg">
+				</section>
 	<!--Traditional Loyalty Cards Pros-->
 
 				<section>
@@ -123,13 +123,13 @@
 				
 	<!--Digital Loyalty Cards-->
 
-				<section 
-				data-background-image="img/loyalty_apps.jpg"></section>
 				<section data-markdown>
 					<textarea data-template>
 						## Digital Loyalty Cards
 					</textarea>					
 				</section>
+				<section 
+				data-background-image="img/loyalty_apps.jpg"></section>				
 
 	<!--Digital Loyalty Cards Pros-->
 
@@ -201,7 +201,11 @@
 						<img data-src="img/digital_con_privacy.png">	
 						</textarea>					
 					</section>
-					<section data-background-image="img/macca.jpg"></section>
+					<section data-markdown data-background-image="img/macca.jpg">
+						<textarea data-template>
+						## too much information to give  		
+						</textarea>							
+					</section>
 				</section>
 
 	<!--Digital Loyalty Cards Pros & Cons Recap-->
@@ -210,13 +214,17 @@
 						## Digital Loyalty Cards<br/>
 						| <h4>Pros</h4>  | <h4>Cons</h4> |
 						| ------------- | ------------- |
-						| <ul><li>portable</li><li>durable</li><li>reliable.</li></ul>  | <ul><li>permissioned</li><li>Difficult to use</li><li>expensive<br>(transaction fee 2~8%)</li><li>less-privacy.</li></ul> |
+						| <ul><li>portable</li><li>durable</li><li>reliable.</li></ul>  | <ul><li>permissioned</li><li>difficult to use</li><li>expensive<br>(transaction fee 2~8%)</li><li>less-privacy.</li></ul> |
 						</textarea>					
 				</section>
 
 
 	<!--SLP Loyalty Cards-->
-
+				<section data-markdown>
+					<textarea data-template>
+						# Solution
+					</textarea>					
+				</section>
 				<section 
 				data-background-image="img/slp_cards.jpg"></section>
 				<section data-markdown>
@@ -284,6 +292,19 @@
 
 
 
+
+	<!--Tickets-->
+				<section data-markdown>
+					<textarea data-template>
+						## Ticket System
+					</textarea>					
+				</section>
+	<!--Demo-->
+				<section data-markdown>
+					<textarea data-template>
+						## DEMO
+					</textarea>					
+				</section>
 	<!--How it works-->
 			<section>
 				<section data-markdown>
@@ -301,33 +322,61 @@
 						- Angular JS
 						- Ionic
 						- Firebase
+						- Express Node.js
+						- Routing Controllers
 					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```javascript
+						contract Covenants(Ripemd160 ownerPkh, Ripemd160 customerPkh, bin maxValue, bin tokenId) {
+							challenge spend(PubKey pk, Sig sig, bin preimage, bin changeOutput) {
+					```
+					</textarea>
+				</section>						
+			</section>
+
+	<!--Adoption-->
+			<section>
+				<section data-markdown>
+					<textarea data-template>
+						## Adoption
+						<span>⬇︎</span>
+					</textarea>					
+				</section>	
+				<section data-markdown>
+					<textarea data-template>
+						### [Merchants accept BCH](https://marcocoino.bitcoin.com/)
+						Merchants already accepting BCH can engage customers by providing loyalty services. 
+					</textarea>					
+				</section>	
+				<section data-markdown>
+					<textarea data-template>
+						### Events & Meet ups
+						Event organisers can issue Tickets by using SLP Tokens.
+					</textarea>					
 				</section>	
 			</section>
-	<!--Tickets-->
-
-				<section data-markdown>
-					<textarea data-template>
-						## Ticket System
-					</textarea>					
-				</section>
-
-	<!--Demo-->
-
-				<section data-markdown>
-					<textarea data-template>
-						## DEMO
-					</textarea>					
-				</section>
-
 	<!--Market-->
-
+			<section>
 				<section data-markdown>
 					<textarea data-template>
 						## Market
+						<span>⬇︎</span>						
 					</textarea>					
 				</section>		
+				<section data-markdown>
+					<textarea data-template>
+						### Predicted 23.3% Compound annual growth rate.
 
+						The global loyalty management market was valued at USD 2617 million in 2018 , and is expected to reach a value of USD 9280 million by 2024, at a CAGR of 23.3% over the forecast period (2019-2024).
+
+[Source Mordor Intelligence](https://www.mordorintelligence.com/industry-reports/loyalty-management-market "Source Mordor Intelligence")
+
+						
+					</textarea>					
+				</section>
+			</section>					
 	<!--Business-->
 			<section>
 
@@ -356,13 +405,7 @@
 				</section>	
 			</section>
 
-	<!--Adoption-->
 
-				<section data-markdown>
-					<textarea data-template>
-						## Adoption
-					</textarea>					
-				</section>	
 
 
 
