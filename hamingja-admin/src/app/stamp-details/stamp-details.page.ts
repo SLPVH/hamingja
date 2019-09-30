@@ -61,8 +61,7 @@ export class StampDetailsPage implements OnInit {
 
     console.log(data.text);
 
-    // const customerAddress = data.text;
-    const customerAddress = 'bitcoincash:qz3qjzkrdue2wqfmfz58cvg9xzecs0zhzyvjrylfv8';
+    const customerAddress = data.text;
 
     const destAddress = await this.spedn.getAddress(this.wallet.cashAddress(), customerAddress, this.stamp.max, this.stamp.tokenId);
     console.log(destAddress);
