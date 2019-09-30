@@ -1,7 +1,20 @@
+/**
+ * ownerPkh: owner address
+ * customerPkh: ccustomer address
+ * maxValue: slp token output value
+ * tokenId: slp token id
+ */
 contract Covenants(Ripemd160 ownerPkh, Ripemd160 customerPkh, bin maxValue, bin tokenId) {
+    /**
+     * pk: customer public key
+     * sig: transaction signature
+     * preimage: transaction image
+     * changeOutput: txout for change
+     */
     challenge spend(PubKey pk, Sig sig, bin preimage, bin changeOutput) {
         verify hash160(pk) == customerPkh;
 
+        // verify coventants
         verify checkSig(sig, pk);
         verify checkDataSig(toDataSig(sig), sha256(preimage), pk);
 
@@ -9,6 +22,7 @@ contract Covenants(Ripemd160 ownerPkh, Ripemd160 customerPkh, bin maxValue, bin 
         bin [_, tail] = preimage @ (size(preimage) - 40);
         bin [hashOutput, _] = tail @ 32;
 
+        // slp constants
         bin opReturn = 0x6a;
         bin lokadId = 0x04534c5000;
         bin tokenType = 0x0101;
@@ -17,8 +31,10 @@ contract Covenants(Ripemd160 ownerPkh, Ripemd160 customerPkh, bin maxValue, bin 
         bin pushMax = 0x08;
         bin pushOpReturn = 0x37;
 
+        // slp op_return
         bin out0 = num2bin(0, 8) . pushOpReturn . opReturn . lokadId . tokenType . txType . pushId . tokenId . pushMax . maxValue;
 
+        // p2pkh constants
         bin opDup = 0x76;
         bin opHash160 = 0xa9;
         bin opEqual = 0x87;
@@ -27,8 +43,10 @@ contract Covenants(Ripemd160 ownerPkh, Ripemd160 customerPkh, bin maxValue, bin 
         bin opChecksig = 0xac;
         bin pushP2pkh = 0x19;
 
+        // slp output
         bin out1 = num2bin(546, 8) . pushP2pkh . opDup . opHash160 . pushHash . ownerPkh . opEqualverify . opChecksig;
 
+        // verify transaction output
         verify hash256(out0 . out1 . changeOutput) == Sha256(hashOutput);
     }
 }

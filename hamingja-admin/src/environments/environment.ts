@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  spednServer: 'http://localhost:3000',
+  spednServer: process.env.SERVER_URL || 'http://localhost:3000',
   network: 'mainnet',
   firebaseConfig: {
     apiKey: "AIzaSyCoXVaaC7s3G7Dto8EeM80Vlv-ru_otbOI",

@@ -18,6 +18,7 @@ export class StampDetailsPage implements OnInit {
   stamp: Partial<Stamp> = {};
   amount: number;
   image: string = '';
+  stampShape: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +38,7 @@ export class StampDetailsPage implements OnInit {
 
       const fileInfo = await this.cloudStorage.getFileInfo(this.stamp.tokenId);
       this.image = fileInfo.url;
+      this.stampShape = fileInfo.metadata.customMetadata.stamp_shape;
 
       const metadata = fileInfo.metadata;
       console.log(metadata);

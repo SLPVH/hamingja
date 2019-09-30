@@ -1,68 +1,15 @@
 <ion-content>
   <ion-list *ngFor="let stamp of stamps">
-    <ion-card button [routerLink]="['/stamp-details', {stamp: stringify(stamp)}]">
-      <ion-card-content>
-        <ion-label>{{stamp.name}}</ion-label>
-        <div>
-          <ion-icon name="star" *ngFor="let _ of [].constructor(stamp.amount)"></ion-icon>
-        </div>
-      </ion-card-content>
-    </ion-card>
-
     <ion-card class="stamp-card-style  card-id-1" button [routerLink]="['/stamp-details', {stamp: stringify(stamp)}]">
-      <ion-img src="assets/cards/bch-beer.png"></ion-img>
+      <ion-img [src]="stamp.url"></ion-img>
       <ion-card-title>{{stamp.name}}</ion-card-title>
       <ion-card-content>
         <div class="icons_wrapper">
-          <ion-icon name="beer" *ngFor="let _ of [].constructor(stamp.max)"></ion-icon>
+          <ion-icon [name]="stamp.stampShape" *ngFor="let _ of [].constructor(stamp.max)"></ion-icon>
         </div>
       </ion-card-content>
     </ion-card>
-
-    <ion-card class="stamp-card-style card-id-2" button [routerLink]="['/stamp-details', {stamp: stringify(stamp)}]">
-      <ion-img src="assets/cards/pow-yoga.png"></ion-img>
-      <ion-card-title>{{stamp.name}}</ion-card-title>
-      <ion-card-content>
-        <div class="icons_wrapper">
-          <ion-icon name="heart" *ngFor="let _ of [].constructor(stamp.max)"></ion-icon>
-        </div>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card class="stamp-card-style card-id-3" button [routerLink]="['/stamp-details', {stamp: stringify(stamp)}]">
-      <ion-img src="assets/cards/asic-coffee.png"></ion-img>
-      <ion-card-title>{{stamp.name}}</ion-card-title>
-      <ion-card-content>
-        <div class="icons_wrapper">
-          <ion-icon name="cafe" *ngFor="let _ of [].constructor(stamp.max)"></ion-icon>
-        </div>
-      </ion-card-content>
-    </ion-card>  
-
-    <ion-card class="stamp-card-style card-id-4" button [routerLink]="['/stamp-details', {stamp: stringify(stamp)}]">
-      <ion-img src="assets/cards/slp-ice-cream.png"></ion-img>
-      <ion-card-title>{{stamp.name}}</ion-card-title>
-      <ion-card-content>
-        <div class="icons_wrapper">
-          <ion-icon name="ice-cream" *ngFor="let _ of [].constructor(stamp.max)"></ion-icon>
-        </div>
-      </ion-card-content>
-    </ion-card>        
-
-    <ion-card class="stamp-card-style card-id-5" button [routerLink]="['/stamp-details', {stamp: stringify(stamp)}]">
-      <ion-img src="assets/cards/pspkh-hair-salon.png"></ion-img>
-      <ion-card-title>{{stamp.name}}</ion-card-title>
-      <ion-card-content>
-        <div class="icons_wrapper">
-          <ion-icon name="cut" *ngFor="let _ of [].constructor(stamp.max)"></ion-icon>
-        </div>
-      </ion-card-content>
-    </ion-card>     
-
   </ion-list>
-
-    <ion-button *ngIf="stamp && stamp.amount < stamp.max" expand="full" (click)="onNewCardClicked()">Get Stamp Card</ion-button>
-
 
 </ion-content>
 <ion-footer class="ion-no-padding">

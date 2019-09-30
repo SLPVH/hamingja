@@ -10,6 +10,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ScanQRPageModule } from './modal/scan-qr/scan-qr.module';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { ScanQRPageModule } from './modal/scan-qr/scan-qr.module';
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     ScanQRPageModule,
+    ComponentsModule,
   ],
   providers: [
     StatusBar,
