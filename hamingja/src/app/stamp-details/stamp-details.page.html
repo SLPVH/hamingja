@@ -7,7 +7,6 @@
 </ion-header>
 <ion-content>
   <ion-list *ngIf="stamp">
-
     <ion-card class="stamp-card-style card-id-2" button [routerLink]="['/stamp-details', stamp]">
       <ion-img [src]="image" *ngIf="image !== ''"></ion-img>
       <ion-card-content>
@@ -16,8 +15,6 @@
         </div>
       </ion-card-content>
     </ion-card>
-
-
     <ion-item *ngIf="stamp.amount >= stamp.max">
       Congraturation!!
     </ion-item>
@@ -41,7 +38,7 @@
 </ion-content>
 <ion-footer class="ion-no-padding">
   <ion-toolbar class="ion-no-padding">
-     <ion-button *ngIf="stamp && stamp.amount < stamp.max" expand="full" (click)="onGetStampClicked()">Get Stamp</ion-button>
-  <ion-button *ngIf="stamp && stamp.amount >= stamp.max" expand="full" (click)="onUseThisClicked()">Use This</ion-button>
+     <ion-button *ngIf="stamp && stamp.amount < stamp.max" expand="full" (click)="onGetStampClicked()" color="secondary">Get Stamp</ion-button>
+  <ion-button *ngIf="stamp && stamp.amount >= stamp.max" expand="full" (click)="onUseThisClicked()" color="secondary">Use This</ion-button>
   </ion-toolbar>
 </ion-footer>
