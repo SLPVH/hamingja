@@ -246,12 +246,14 @@
 					<section data-markdown>
 						<textarea data-template>
 							### easy
+							End users don't need to know about SLP or even BCH at all.  
 							<img data-src="img/trad_pro_easy.png">
 						</textarea>
 					</section>
 					<section data-markdown>
 						<textarea data-template>
 						### cheap
+						Cheaper altenative solution for merchants. It requires only fraction of BCH to create own SLP loyalty cards.
 						<img data-src="img/slp_pro_cheap.png">
 					</textarea>
 					</section>					
@@ -276,6 +278,7 @@
 					<section data-markdown>
 						<textarea data-template>
 						### no privacy problems
+						You don't need to provide any personal informations
 						<img data-src="img/slp_pro_privacy.png">		
 					</textarea>
 					</section>					
@@ -289,16 +292,28 @@
 					</textarea>
 					</section>
 				</section>
-
-
+				
+				<section data-markdown>
+					<textarea data-template>
+					Every one can create own loyalty cards.
+					</textarea>
+				</section>				
 
 
 	<!--Tickets-->
+			<section> 
 				<section data-markdown>
 					<textarea data-template>
-						## Ticket System
+						## SLP Tickets
+						<span>⬇︎</span>
 					</textarea>					
 				</section>
+				<section data-markdown>
+					<textarea data-template>
+						We planed to integrate the SLP Ticket system in our app since the required technology is almost the same as our loyalty cards. Unfortunately, We're running out of time so this section is under construction.  
+					</textarea>					
+				</section>
+			</section>								
 	<!--Demo-->
 				<section data-markdown>
 					<textarea data-template>
@@ -328,14 +343,32 @@
 				</section>
 				<section data-markdown>
 					<textarea data-template>
-					```javascript
-						contract Covenants(Ripemd160 ownerPkh, Ripemd160 customerPkh, bin maxValue, bin tokenId) {
-							challenge spend(PubKey pk, Sig sig, bin preimage, bin changeOutput) {
-					```
+						## Non Tradable SLP Tokens
+						This is important interms of mass adoption. Not everyone embrace tradability since dificulty of contorol of loyalty points. We focus on better usabilty for merchants who actually engaging people to use this app. 
 					</textarea>
-				</section>						
-			</section>
+				</section>
 
+				<section data-markdown>
+					<textarea data-template>
+						## OP_CHECKDATASIG
+						To be able to limit SLP token's tradability, we utilizes OP_CHECKDATASIG covenants. So end-user can only send tokens to issuer. 
+						```javascript
+							verify checkDataSig(toDataSig(sig), sha256(preimage), pk);
+						```
+					</textarea>
+				</section>			
+	
+
+				<section data-markdown>
+					<textarea data-template>
+						## OP_CHECKDATASIG
+						To be able to limit SLP token's tradability, we utilizes OP_CHECKDATASIG covenants. So end-user can only send tokens to issuer. 
+						```javascript
+							verify checkDataSig(toDataSig(sig), sha256(preimage), pk);
+						```
+					</textarea>
+				</section>
+			</section>		
 	<!--Adoption-->
 			<section>
 				<section data-markdown>
@@ -406,7 +439,11 @@
 			</section>
 
 
-
+				<section data-markdown>
+						<textarea data-template>
+						# Thank you
+						</textarea>
+				</section>
 
 
 			</div>
