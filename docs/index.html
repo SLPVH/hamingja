@@ -315,11 +315,78 @@
 				</section>
 			</section>								
 	<!--Demo-->
+			<section> 
+
 				<section data-markdown>
 					<textarea data-template>
 						## DEMO
+						<span>⬇︎</span>
 					</textarea>					
 				</section>
+
+				<section>
+					<p>Creating stamp card in the hamingja admin app.</p>
+					<center>			
+						<video autoplay="true" loop="true" muted="true" height="540">
+						<source src="https://firebasestorage.googleapis.com/v0/b/projectignite.appspot.com/o/demo%2Fdemo01.mp4?alt=media&token=d81bf7e9-400b-42ac-b8c7-55261ad994eb" type="video/mp4"> Your browser does not support the video tag.
+						</video>
+					</center>
+
+				</section>
+
+				<section>
+					<p>Receiving stamps from the hamingja admin app.</p>
+					<center>			
+						<video autoplay="true" loop="true" muted="true" height="540">
+						<source src="https://firebasestorage.googleapis.com/v0/b/projectignite.appspot.com/o/demo%2Fdemo02.mp4?alt=media&token=46269ffe-f943-4db2-bc54-6197b61686b9" type="video/mp4"> Your browser does not support the video tag.
+						</video>
+					</center>
+				</section>
+
+				<section>
+					<p>Sending a stamp to the hamingja (client) app.</p>
+					<center>			
+						<video autoplay="true" loop="true" muted="true" height="540">
+						<source src="https://firebasestorage.googleapis.com/v0/b/projectignite.appspot.com/o/demo%2Fdemo03.mp4?alt=media&token=7d59a6f4-77a7-4891-a07e-9fa48cd12569" type="video/mp4"> Your browser does not support the video tag.
+						</video>
+					</center>
+
+				</section>
+
+
+				<section>
+					<p>Received a stamp in the hamingja (client) app.</p>
+					<center>			
+						<video autoplay="true" loop="true" muted="true" height="540">
+						<source src="https://firebasestorage.googleapis.com/v0/b/projectignite.appspot.com/o/demo%2Fdemo04.mp4?alt=media&token=05a2450b-2bab-4022-85fb-efb316535b72" type="video/mp4"> Your browser does not support the video tag.
+						</video>
+					</center>
+
+				</section>
+
+				<section>
+					<p>Stamps Details.</p>
+					<center>			
+						<video autoplay="true" loop="true" muted="true" height="540">
+						<source src="https://firebasestorage.googleapis.com/v0/b/projectignite.appspot.com/o/demo%2Fdemo05.mp4?alt=media&token=4ba5fdd9-8e79-432a-b857-b24c858a59d8" type="video/mp4"> Your browser does not support the video tag.
+						</video>
+					</center>
+
+				</section>
+
+
+				<section>
+					<p>Using Stamps, sending back stamps from the hamingja to the hamingja admin (token issuer).</p>
+					<center>			
+						<video autoplay="true" loop="true" muted="true" height="540">
+						<source src="https://firebasestorage.googleapis.com/v0/b/projectignite.appspot.com/o/demo%2Fdemo06.mp4?alt=media&token=7eed7484-9497-4259-92fb-e8ea0f5b1717" type="video/mp4"> Your browser does not support the video tag.
+						</video>
+					</center>
+
+				</section>
+
+
+	</section>
 	<!--How it works-->
 			<section>
 				<section data-markdown>
@@ -344,10 +411,16 @@
 				<section data-markdown>
 					<textarea data-template>
 						## Non Tradable SLP Tokens
-						This is important interms of mass adoption. Not everyone embrace tradability since dificulty of contorol of loyalty points if it's easy to trade. We focused on better usabilty for merchants who actually engaging people to use this app. To be able to limit SLP token's tradability, we utilizes checkSig checkDataSig. So end-user can only send back tokens to its issuer. 
+						This is important interms of mass adoption. Some business owners do not want their loyalty points to be tradable. 
+						To be able to limit SLP token's tradability, we utilizes verify coventants by using checkSig and checkDataSig. So end-user can only send back tokens to its issuer. 
 					</textarea>
 				</section>
-
+				<section data-markdown>
+					<textarea data-template>
+						### architecture
+						<img class="architecture" data-src="img/architecture.png">
+					</textarea>
+				</section>
 				<section data-markdown>
 					<textarea data-template>
 						### checkSig + checkDataSig = verify coventants						```javascript
