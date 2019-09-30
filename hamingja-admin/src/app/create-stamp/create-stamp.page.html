@@ -5,15 +5,11 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-list>
     <ion-item>
       <ion-text color="danger">*</ion-text>
       <ion-input placeholder="Name of card" required [(ngModel)]="cardName"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="file" (change)="onFileChanged($event)"></ion-input>
     </ion-item>
     <ion-item>
       <ion-text color="danger">*</ion-text>
@@ -37,6 +33,29 @@
       </ion-select>
     </ion-item>
     <ion-item>
+      <ion-input type="file" (change)="onFileChanged($event)"></ion-input>
+    </ion-item>    
+    <ion-item>
+      <ion-label>Stamp Shape</ion-label>
+      <ion-select>
+        <ion-select-option value="">star</ion-select-option>
+        <ion-select-option value="">ice-cream</ion-select-option>
+        <ion-select-option value="">heart</ion-select-option>
+        <ion-select-option value="">cafe</ion-select-option>        
+        <ion-select-option value="">cut</ion-select-option>        
+         <ion-select-option value="">beer</ion-select-option>        
+         <ion-select-option value="">scissors</ion-select-option>        
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-text></ion-text>
+      <ion-input placeholder="Color of Stamps in hex"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-text></ion-text>
+      <ion-input placeholder="Background Color in hex"></ion-input>
+    </ion-item>
+    <ion-item>
       <ion-label>Termination</ion-label>
       <ion-toggle [(ngModel)]="enableTermination"></ion-toggle>
     </ion-item>
@@ -48,7 +67,7 @@
       <ion-label>Termination Time</ion-label>
       <ion-datetime displayFormat="HH:mm:ss"></ion-datetime>
     </ion-item>
-  </ion-list>1
+  </ion-list>
 </ion-content>
 <ion-footer class="ion-no-padding">
   <ion-toolbar class="ion-no-padding">

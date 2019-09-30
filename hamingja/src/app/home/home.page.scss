@@ -10,12 +10,19 @@ ion-title{
     background-color:var(--ion-color-secondary);
     background-size: 29%;
 }
-ion-tab-button{	
-	--background{
-	    background-color:var(--ion-color-secondary);	
-	}
-	--color{
-	    background-color:red;	
-	}
+ion-tab-button{
+    background: transparent!important;
+
 }
-	
+ion-tab-button.tab-selected{
+    background:var(--ion-color-secondary-primary);
+    border-bottom:3px solid var(--ion-color-warning-tint)!important;
+}
+ion-tab-bar {
+    background:var(--ion-color-secondary-tint);
+}
+ion-label{
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+}

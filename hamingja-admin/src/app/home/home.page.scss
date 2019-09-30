@@ -9,10 +9,19 @@ ion-header{
 	  margin-right: 48px;      
 	}
 }
+ion-tab-button{
+    background: transparent!important;
+
+}
 ion-tab-button.tab-selected{
-	border-bottom: 2px solid	
+    background:var(--ion-color-secondary-primary);
+    border-bottom:3px solid var(--ion-color-warning-tint)!important;
+}
+ion-tab-bar {
+    background:var(--ion-color-secondary-tint);
 }
 ion-label{
-	font-weight: bold;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
 }
-
