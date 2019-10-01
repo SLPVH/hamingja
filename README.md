@@ -30,6 +30,5 @@ yarn dev
 [Presentation & Demo URL](https://slpvh.github.io/hamingja/ "")
 
 ## Key component
-Key component is combination of SLP Transaction & BCH covenants
-[Key component] (https://github.com/SLPVH/hamingja/blob/master/hamingja-server/spedn/covenants.spedn "")
+[Key component : Combination of SLP Transaction & BCH covenants](https://github.com/SLPVH/hamingja/blob/master/hamingja-server/spedn/covenants.spedn "")
 
