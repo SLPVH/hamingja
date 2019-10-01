@@ -1,5 +1,5 @@
 # hamingja
-hamingja is loyalty points system using non-tradable SLP token. SLP transactions using BCH checkdatasig covenants enabled this functionality.
+hamingja is loyalty points system using non-tradable SLP token.  SLP transactions are combined with BCH checkdatasig covenants.
 
 ## Setting up test environment
 
