@@ -27,4 +27,4 @@ yarn dev
 ```
 
 ## Demo URL
-[Demo URL](https://slpvh.github.io/hamingja/ "")
+[Presentation & Demo URL](https://slpvh.github.io/hamingja/ "")
